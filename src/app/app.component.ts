@@ -1,12 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
+import { AuthenService } from './services/authen.service';
 import { HomePage } from '../pages/home/home';
 import { SigninPage } from '../pages/signin/signin';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+   providers: [AuthenService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
