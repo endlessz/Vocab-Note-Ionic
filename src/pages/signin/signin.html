@@ -6,15 +6,15 @@
 
 <ion-content padding>
 	<h1 class="text-center logo" color="primary" padding>Vocab Note</h1>
-	<form>
+	<form (submit)="signIn()">
   		<ion-list>
 		    <ion-item>
-		      <ion-label>Username</ion-label>
-		      <ion-input type="text" value=""></ion-input>
+		      <ion-label>Email</ion-label>
+		      <ion-input type="text" name="email" value=""></ion-input>
 		    </ion-item>
 		    <ion-item>
 		      <ion-label>Password</ion-label>
-		      <ion-input type="password" value=""></ion-input>
+		      <ion-input type="password" name="password" value=""></ion-input>
 		    </ion-item>
 		</ion-list>
 
@@ -23,7 +23,6 @@
 	  	</div>
 	</form>
 
-	<p class="text-center">Don't have account?</p>
-	<h4 class="text-center" color="danger">Sing Up</h4>
-	
+	<p ion-text class="text-center">Don't have account?</p>
+	<h4 ion-text class="text-center" color="danger" (click)="goSignUp()">Sing Up</h4>
 </ion-content>
