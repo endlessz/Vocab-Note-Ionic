@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<h1 class="text-center logo" color="primary" padding>Vocab Note</h1>
+	<form (submit)="signUp()">
+  		<ion-list>
+		    <ion-item>
+		      <ion-label>Email</ion-label>
+		      <ion-input type="text" name="email" [(ngModel)]="email"></ion-input>
+		    </ion-item>
+		    <ion-item>
+		      <ion-label>Password</ion-label>
+		      <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
+		    </ion-item>
+		</ion-list>
+
+	    <div padding>
+	   	 	<button ion-button block color="primary" type="submit" >Sign Up</button>
+	  	</div>
+	</form>
+</ion-content>
