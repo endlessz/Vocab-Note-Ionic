@@ -12,7 +12,10 @@ export class VocabService {
 	constructor(http: Http){
 		this.http = http
 		this.baseUrl = "http://vocabnote.herokuapp.com/api/v1/"
-		this.headers = new Headers({ 'Content-Type': 'application/json' });
+		this.headers = new Headers({ 
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + localStorage.getItem('token')
+		});
 		this.options = new RequestOptions({ headers: this.headers });
 	}
 
