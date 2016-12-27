@@ -6,20 +6,42 @@
 
 <ion-content padding>
 	<h1 class="text-center logo" color="primary" padding>Vocab Note</h1>
-	<form (submit)="signUp()">
+	<form [formGroup]="signUpForm" (submit)="signUp()" novalidate>
   		<ion-list>
 		    <ion-item>
 		      <ion-label>Email</ion-label>
-		      <ion-input type="text" name="email" [(ngModel)]="email"></ion-input>
+		      <ion-input type="email" formControlName="email"></ion-input>
 		    </ion-item>
+		   	<div>
+			  <ion-item *ngFor="let errors of formErrors.email"> 
+			    <p color="danger">{{ errors }}<p>
+			  </ion-item>
+			</div>
+
+		    <ion-item>
+		      <ion-label>Username</ion-label>
+		      <ion-input type="text" formControlName="username"></ion-input>
+		    </ion-item>
+	    	<div *ngIf="formErrors.username">
+			  <ion-item *ngFor="let errors of formErrors.username"> 
+			    <p color="danger">{{ errors }}<p>
+			  </ion-item>
+			</div>
+
 		    <ion-item>
 		      <ion-label>Password</ion-label>
-		      <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
+		      <ion-input type="password" formControlName="password"></ion-input>
 		    </ion-item>
+		    <div *ngIf="formErrors.password">
+				 <ion-item *ngFor="let errors of formErrors.password"> 
+				   <p color="danger">{{ errors }}<p>
+				 </ion-item>
+			</div>
 		</ion-list>
 
 	    <div padding>
 	   	 	<button ion-button block color="primary" type="submit" >Sign Up</button>
 	  	</div>
 	</form>
+	<p *ngIf="error">{{ error }}</p>
 </ion-content>
