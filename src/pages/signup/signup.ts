@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenService } from '../../app/services/authen.service';
+import { ToastService } from '../../app/services/toast.service';
 import { NavController, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserValidator } from '../../app/validators/user.validator';
@@ -14,7 +15,7 @@ export class SignupPage {
   error: any
 
   constructor(public navCtrl: NavController, private authenService: AuthenService
-              , private toastCtrl: ToastController, private builder: FormBuilder) {
+              , private toastService: ToastService, private builder: FormBuilder) {
     this.signUpForm = builder.group({
         email: ['', Validators.compose([
             Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
@@ -39,11 +40,7 @@ export class SignupPage {
     this.authenService.signUp(this.signUpForm.value).subscribe(response => {
       this.navCtrl.pop()
 
-      this.toastCtrl.create({
-        message: 'Successfully',
-        duration: 3000,
-        position: 'bottom'
-      }).present()
+      this.toastService.showToast("Register Successful")
     }, error => {
         this.error = error._body
     })
@@ -73,7 +70,6 @@ export class SignupPage {
     'username': [],
     'password': []
   }
-
 
   validationMessages = {
     'email': {
