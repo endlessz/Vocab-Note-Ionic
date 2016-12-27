@@ -3,17 +3,18 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { AuthenService } from './services/authen.service';
 import { ToastService } from './services/toast.service';
+import { VocabService } from './services/vocab.service';
 import { HomePage } from '../pages/home/home';
 import { SigninPage } from '../pages/signin/signin';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [AuthenService, ToastService]
+  providers: [AuthenService, ToastService, VocabService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = SigninPage;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
