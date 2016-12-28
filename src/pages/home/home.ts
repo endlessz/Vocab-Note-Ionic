@@ -19,11 +19,10 @@ export class HomePage {
 
   getVocabs(){
   	this.vocabService.getVocabs().subscribe(response => {
-  		console.log(response)
   		this.vocabs = response.data
   	}, error => {
   		if(error.status == 401){
-  			console.log("Unauthen")
+  			console.log("Unauthentication")
   			this.navCtrl.setRoot(SigninPage)
   		}
   	})
