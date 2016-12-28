@@ -7,6 +7,7 @@ import { SigninPage } from '../signin/signin';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
   vocabs: any
 
@@ -27,5 +28,4 @@ export class HomePage {
   		}
   	})
   }
-
 }
