@@ -20,16 +20,22 @@ export class SigninPage {
 
   signIn(){
   	this.authenService.signIn(this.email, this.password).subscribe(response => {
-      //Need callback because asynchronous
-      localStorage.setItem('token', response.token)
-      
-      this.navCtrl.setRoot(HomePage)
+      this.saveToken(response.token)
+      this.goHome()
     }, error => {  
         this.error = "Invalid email or password"
     })
   }
 
+  saveToken(token){
+    localStorage.setItem('token', token)
+  }
+
   goSignUp(){
   	this.navCtrl.push(SignupPage)
+  }
+
+  goHome(){
+    this.navCtrl.setRoot(HomePage)
   }
 }
