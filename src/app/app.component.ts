@@ -5,6 +5,7 @@ import { AuthenService } from './services/authen.service';
 import { ToastService } from './services/toast.service';
 import { VocabService } from './services/vocab.service';
 import { HomePage } from '../pages/home/home';
+import { SigninPage } from '../pages/signin/signin';
 
 @Component({
   templateUrl: 'app.html',
@@ -40,5 +41,10 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logout(){
+    localStorage.clear()
+    this.nav.setRoot(SigninPage)
   }
 }
