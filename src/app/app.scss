@@ -26,3 +26,17 @@
 .reduce-left {
 	margin-left: -1.1em;
 }
+
+.myspinner {
+	display: none;
+	position: fixed;
+	left:50%;
+	top:50%;
+	width: 100px;
+	height: 100px;
+	margin: -50px 0 0 -50px;
+}
+
+.myspinner.active {
+	display: block;
+}
