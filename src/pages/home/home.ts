@@ -11,6 +11,7 @@ import { AddVocabPage } from '../vocab/addvocab/addvocab';
 
 export class HomePage {
   vocabs: any
+  isLoading: boolean
 
   constructor(public navCtrl: NavController, private vocabService: VocabService) {
   }
@@ -20,9 +21,14 @@ export class HomePage {
   }
 
   getVocabs(){
+    this.isLoading = true
+
   	this.vocabService.getVocabs().subscribe(response => {
+      this.isLoading = false
   		this.vocabs = response.data
   	}, error => {
+      this.isLoading = false
+
   		if(error.status == 401){
   			console.log("Unauthentication")
   			this.navCtrl.setRoot(SigninPage)

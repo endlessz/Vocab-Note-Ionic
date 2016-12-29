@@ -13,6 +13,7 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-spinner [ngClass]="{'active': isLoading }" class="myspinner" color="primary"></ion-spinner>
   <ion-list>
 	  <ion-item *ngFor="let vocab of vocabs">
 	    <h2>{{ vocab.word }}</h2>
