@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { VocabService } from '../../../app/services/vocab.service';
 import { NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HomePage } from '../../home/home';
 
 @Component({
   selector: 'page-addvocab',
@@ -11,9 +12,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddVocabPage {
   addVocabForm: FormGroup
   error: any
+  isSubmit: boolean
 
   constructor(public navCtrl: NavController, private vocabService: VocabService, private builder: FormBuilder) {
-  	this.addVocabForm = builder.group({
+  	this.isSubmit = false
+  }
+
+  ngOnInit(){
+  	this.addVocabForm = this.builder.group({
         word: ['', Validators.compose([
             Validators.maxLength(200),
             Validators.required
@@ -36,9 +42,12 @@ export class AddVocabPage {
     	return
     }
 
+    this.isSubmit = true
+
     this.vocabService.postVocab(this.addVocabForm.value).subscribe(response => {
-      this.navCtrl.pop()
+      this.navCtrl.setRoot(HomePage)
     }, error => {
+    	this.isSubmit = false
         this.error = error._body
     })
   }
