@@ -13,10 +13,15 @@ import { UserValidator } from '../../app/validators/user.validator';
 export class SignupPage {
   signUpForm: FormGroup
   error: any
+  isSubmit: boolean
 
   constructor(public navCtrl: NavController, private authenService: AuthenService
               , private toastService: ToastService, private builder: FormBuilder) {
-    this.signUpForm = builder.group({
+    this.isSubmit = false
+  }
+
+  ngOnInit(){
+    this.signUpForm = this.builder.group({
         email: ['', Validators.compose([
             Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
             Validators.required
@@ -37,11 +42,14 @@ export class SignupPage {
   }
 
   signUp(){
+    this.isSubmit = true
+
     this.authenService.signUp(this.signUpForm.value).subscribe(response => {
       this.navCtrl.pop()
 
       this.toastService.showToast("Register Successful")
     }, error => {
+        this.isSubmit = false
         this.error = error._body
     })
   }
