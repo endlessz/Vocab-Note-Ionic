@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { VocabService } from '../../app/services/vocab.service';
 import { NavController } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
+import { AddVocabPage } from '../vocab/addvocab/addvocab';
 
 @Component({
   selector: 'page-home',
@@ -27,5 +28,9 @@ export class HomePage {
   			this.navCtrl.setRoot(SigninPage)
   		}
   	})
+  }
+
+  goToAddVocab(){
+    this.navCtrl.push(AddVocabPage)
   }
 }
