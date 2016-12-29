@@ -1,9 +1,49 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Add New Vocab</ion-title>
+    <ion-title>New Vocab</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="addVocabForm" (submit)="addVocab()" novalidate="">
+      <ion-list>
+        <ion-item>
+          <ion-label stacked>Word *</ion-label>
+          <ion-input type="text" formControlName="word"></ion-input>
+        </ion-item>
+        <div>
+          <ion-item *ngFor="let errors of formErrors.word"> 
+            <p color="danger">{{ errors }}<p>
+          </ion-item>
+        </div>
 
+        <ion-item>
+          <ion-label stacked>Meaning *</ion-label>
+          <ion-input type="text" formControlName="meaning"></ion-input>
+        </ion-item>
+        <div>
+          <ion-item *ngFor="let errors of formErrors.meaning"> 
+            <p color="danger">{{ errors }}<p>
+          </ion-item>
+        </div>
+
+        <ion-item>
+          <ion-label stacked>Example</ion-label>
+          <ion-textarea rows="3" formControlName="example"></ion-textarea>
+        </ion-item>
+        <div>
+          <ion-item *ngFor="let errors of formErrors.example"> 
+            <p color="danger">{{ errors }}<p>
+          </ion-item>
+        </div>
+    </ion-list>
+
+    <div *ngIf="error">
+      <p color="danger" class="text-center">{{ error }}</p>
+    </div>
+
+    <div padding>
+      <button ion-button block color="primary" type="submit" >Add New Vocab</button>
+    </div>
+  </form>
 </ion-content>
