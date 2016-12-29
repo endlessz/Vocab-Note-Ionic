@@ -5,7 +5,6 @@ import { AuthenService } from './services/authen.service';
 import { ToastService } from './services/toast.service';
 import { VocabService } from './services/vocab.service';
 import { HomePage } from '../pages/home/home';
-import { SigninPage } from '../pages/signin/signin';
 
 @Component({
   templateUrl: 'app.html',
