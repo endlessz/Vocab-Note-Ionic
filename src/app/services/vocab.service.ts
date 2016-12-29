@@ -6,22 +6,35 @@ import 'rxjs/Rx';
 export class VocabService {
 	http: any
 	baseUrl: string
-	headers: any
-	options: any
 
 	constructor(http: Http){
 		this.http = http
-		this.baseUrl = "http://vocabnote.herokuapp.com/api/v1/"
+		this.baseUrl = "http://vocabnote.herokuapp.com/api/v1/vocabs"
 	}
 
 	getVocabs(){
-		this.headers = new Headers({ 
+		const option = this.preparedRequestOptions()
+
+		return this.http.get(this.baseUrl, option)
+		      			.map(res => res.json())  
+	}
+
+	postVocab(formValue){
+		const option = this.preparedRequestOptions()
+		let data = JSON.stringify(formValue);
+
+		return this.http.post(this.baseUrl, data, option)
+		      			.map(res => res.json())  
+	}
+
+	private preparedRequestOptions(){
+		const headers = new Headers({ 
 			'Content-Type': 'application/json',
 			'Authorization': 'Bearer ' + localStorage.getItem('token')
 		});
-		this.options = new RequestOptions({ headers: this.headers });
 
-		return this.http.get(this.baseUrl + "vocabs", this.options)
-		      			.map(res => res.json())  
+		const options = new RequestOptions({ headers: headers });
+
+		return options
 	}
 }
