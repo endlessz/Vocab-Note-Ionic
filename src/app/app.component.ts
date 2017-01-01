@@ -26,6 +26,9 @@ export class MyApp {
       { title: 'Home', component: HomePage }
     ];
 
+    if(!this.isAuthenticated()){
+      this.rootPage = SigninPage
+    }
   }
 
   initializeApp() {
@@ -46,5 +49,9 @@ export class MyApp {
   logout(){
     localStorage.clear()
     this.nav.setRoot(SigninPage)
+  }
+
+  private isAuthenticated(){
+     return localStorage.getItem('token')
   }
 }
