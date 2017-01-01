@@ -27,6 +27,14 @@ export class VocabService {
 		      			.map(res => res.json())  
 	}
 
+	putVocab(formValue){
+		const option = this.preparedRequestOptions()
+		let data = JSON.stringify(formValue);
+
+		return this.http.put(this.baseUrl, data, option)
+      					.map(res => res.json())  
+	}
+
 	deleteVocab(vocab){
 		const option = this.preparedRequestOptions()
 
