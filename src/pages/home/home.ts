@@ -23,17 +23,20 @@ export class HomePage {
   getVocabs(){
     this.isLoading = true
 
-  	this.vocabService.getVocabs().subscribe(response => {
-      this.isLoading = false
-  		this.vocabs = response.data
-  	}, error => {
-      this.isLoading = false
+  	this.vocabService.getVocabs().subscribe(
+      response => {
+    		this.vocabs = response.data
+  	  }, 
 
-  		if(error.status == 401){
-  			console.log("Unauthentication")
-  			this.navCtrl.setRoot(SigninPage)
-  		}
-  	})
+      error => {
+    		if(error.status == 401){
+    			console.log("Unauthentication")
+    			this.navCtrl.setRoot(SigninPage)
+    		}
+  	  },
+      
+      () => { this.isLoading = false }
+    )
   }
 
   goToAddVocab(){
