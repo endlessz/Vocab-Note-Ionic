@@ -1,29 +1,30 @@
 import { Component } from '@angular/core';
 import { VocabService } from '../../../app/services/vocab.service';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomePage } from '../../home/home';
 
 @Component({
-  selector: 'page-addvocab',
-  templateUrl: 'addvocab.html'
+  selector: 'page-updatevocab',
+  templateUrl: 'updatevocab.html'
 })
 
-export class AddVocabPage {
-  addVocabForm: FormGroup
+export class UpdateVocabPage {
+  updateVocabForm: FormGroup
   error: any
   isSubmit: boolean
 
   constructor(
     public navCtrl: NavController, 
     private vocabService: VocabService, 
-    private builder: FormBuilder
+    private builder: FormBuilder,
+    private navParams: NavParams
   ) {
-  	this.isSubmit = false
+    this.isSubmit = false
   }
 
   ngOnInit(){
-  	this.addVocabForm = this.builder.group({
+    this.updateVocabForm = this.builder.group({
         id: ['', Validators.required],
         word: ['', Validators.compose([
             Validators.maxLength(200),
@@ -38,44 +39,55 @@ export class AddVocabPage {
         ])]
     });
 
-    this.addVocabForm.valueChanges.subscribe(data => this.onValueChanged(data));
+    let vocab = this.navParams.get('vocab')
+    this.updateVocabForm.patchValue({id: vocab.id})
+    this.updateVocabForm.patchValue({word: vocab.word})
+    this.updateVocabForm.patchValue({meaning: vocab.meaning})
+    this.updateVocabForm.patchValue({example: vocab.example})
+
+    this.updateVocabForm.valueChanges.subscribe(data => this.onValueChanged(data));
   }
 
-  addVocab(){
-    if(!this.addVocabForm.valid){
-    	this.error = "Word and Meaning is required"
-    	return
+  updateVocab(){
+    if(!this.updateVocabForm.valid){
+      this.error = "Word and Meaning is required"
+      return
     }
 
     this.isSubmit = true
 
-    this.vocabService.postVocab(this.addVocabForm.value).subscribe(response => {
-      this.navCtrl.setRoot(HomePage)
-    }, error => {
-    	this.isSubmit = false
+    this.vocabService.putVocab(this.updateVocabForm.value).subscribe(
+      response => {
+        this.navCtrl.setRoot(HomePage)
+      }, 
+
+      error => {
         this.error = error._body
-    })
+      },
+      
+      () => { this.isSubmit = false }
+    )
   }
 
   onValueChanged(data?: any) {
-  	  this.error = ''
+    this.error = ''
 
-      const form = this.addVocabForm;
+    const form = this.updateVocabForm;
 
-      for (const field in this.formErrors) {
-        this.formErrors[field] = [];
-        this.addVocabForm[field] = '';
+    for (const field in this.formErrors) {
+      this.formErrors[field] = [];
+      this.updateVocabForm[field] = '';
 
-        const control = form.get(field);
+      const control = form.get(field);
 
-        if (control && control.dirty && !control.valid) {
-          const messages = this.validationMessages[field];
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
 
-          for (const key in control.errors) {
-            this.formErrors[field].push(messages[key]);
-          }
+        for (const key in control.errors) {
+          this.formErrors[field].push(messages[key]);
         }
       }
+    }
   }
 
   formErrors = {
