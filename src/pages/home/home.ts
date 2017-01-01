@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { VocabService } from '../../app/services/vocab.service';
-import { NavController } from 'ionic-angular';
+import { NavController, ActionSheetController, AlertController } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
 import { AddVocabPage } from '../vocab/addvocab/addvocab';
 
@@ -15,7 +15,9 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController, 
-    private vocabService: VocabService
+    private vocabService: VocabService,
+    private actionSheetCtrl: ActionSheetController,
+    private alertCtrl: AlertController
   ) { }
 
   ngOnInit(){
@@ -44,4 +46,51 @@ export class HomePage {
   goToAddVocab(){
     this.navCtrl.push(AddVocabPage)
   }
-}
+
+  presentWordAction(vocab) {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Vocab Action -> ' + vocab.word,
+      buttons: [
+        {
+          text: 'Edit',
+          handler: () => {
+            console.log('Go to edit page');
+          }
+        },{
+          text: 'Delete',
+          handler: () => {
+            this.showDeleteConfirm(vocab)
+          }
+        },{
+          text: 'Cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+  showDeleteConfirm(vocab) {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete word?',
+      message: "'" + vocab.word + " " + vocab.meaning + "' will be permanently deleted",
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'DELETE',
+          handler: () => {
+            console.log('Delete clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+} 
