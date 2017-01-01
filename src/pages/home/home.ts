@@ -69,6 +69,7 @@ export class HomePage {
         }
       ]
     });
+    
     actionSheet.present();
   }
 
@@ -86,24 +87,28 @@ export class HomePage {
         {
           text: 'DELETE',
           handler: () => {
-            console.log('Delete clicked');
-            this.isLoading = true
-
-            this.vocabService.deleteVocab(vocab).subscribe(
-              response => {
-                this.navCtrl.setRoot(HomePage)
-              }, 
-
-              error => {
-                console.log(error)
-              },
-
-              () => { this.isLoading = false }
-            )
+            this.deleteVocab(vocab)
           }
         }
       ]
     });
+
     confirm.present();
+  }
+
+  private deleteVocab(vocab){
+    this.isLoading = true
+
+    this.vocabService.deleteVocab(vocab).subscribe(
+      response => {
+        this.navCtrl.setRoot(HomePage)
+      }, 
+
+      error => {
+        console.log(error)
+      },
+
+      () => { this.isLoading = false }
+    )
   }
 } 
