@@ -27,6 +27,15 @@ export class VocabService {
 		      			.map(res => res.json())  
 	}
 
+	deleteVocab(vocab){
+		const option = this.preparedRequestOptions()
+
+		console.log("Vocab " + vocab.id)
+
+		return this.http.delete(this.baseUrl + "/" + vocab.id, option)
+						.map(res => res.json())
+	}
+
 	private preparedRequestOptions(){
 		const headers = new Headers({ 
 			'Content-Type': 'application/json',
