@@ -14,7 +14,11 @@ export class AddVocabPage {
   error: any
   isSubmit: boolean
 
-  constructor(public navCtrl: NavController, private vocabService: VocabService, private builder: FormBuilder) {
+  constructor(
+    public navCtrl: NavController, 
+    private vocabService: VocabService, 
+    private builder: FormBuilder
+  ) {
   	this.isSubmit = false
   }
 
@@ -92,5 +96,4 @@ export class AddVocabPage {
       'maxlength':      'Example cannot contain up to 1000 characters.'
     }
   };
-
 }
