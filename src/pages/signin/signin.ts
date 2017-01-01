@@ -13,18 +13,25 @@ export class SigninPage {
   password: string
   error: any
 
-  constructor(public navCtrl: NavController, private authenService: AuthenService) {
+  constructor(
+    public navCtrl: NavController, 
+    private authenService: AuthenService
+  ) {
     this.email = ''
     this.password = ''
   }
 
   signIn(){
-  	this.authenService.signIn(this.email, this.password).subscribe(response => {
-      this.saveToken(response.token)
-      this.goHome()
-    }, error => {  
-        this.error = "Invalid email or password"
-    })
+  	this.authenService.signIn(this.email, this.password).subscribe(
+      response => {
+        this.saveToken(response.token)
+        this.goHome()
+      }, 
+
+      error => {  
+          this.error = "Invalid email or password"
+      }
+    )
   }
 
   saveToken(token){

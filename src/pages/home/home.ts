@@ -13,8 +13,10 @@ export class HomePage {
   vocabs: any
   isLoading: boolean
 
-  constructor(public navCtrl: NavController, private vocabService: VocabService) {
-  }
+  constructor(
+    public navCtrl: NavController, 
+    private vocabService: VocabService
+  ) { }
 
   ngOnInit(){
   	this.getVocabs()
@@ -34,7 +36,7 @@ export class HomePage {
     			this.navCtrl.setRoot(SigninPage)
     		}
   	  },
-      
+
       () => { this.isLoading = false }
     )
   }

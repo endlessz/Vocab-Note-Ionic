@@ -15,8 +15,12 @@ export class SignupPage {
   error: any
   isSubmit: boolean
 
-  constructor(public navCtrl: NavController, private authenService: AuthenService
-              , private toastService: ToastService, private builder: FormBuilder) {
+  constructor(
+    public navCtrl: NavController, 
+    private authenService: AuthenService,
+    private toastService: ToastService, 
+    private builder: FormBuilder
+  ) {
     this.isSubmit = false
   }
 
@@ -44,14 +48,19 @@ export class SignupPage {
   signUp(){
     this.isSubmit = true
 
-    this.authenService.signUp(this.signUpForm.value).subscribe(response => {
-      this.navCtrl.pop()
+    this.authenService.signUp(this.signUpForm.value).subscribe(
+      response => {
+        this.navCtrl.pop()
 
-      this.toastService.showToast("Register Successful")
-    }, error => {
-        this.isSubmit = false
-        this.error = error._body
-    })
+        this.toastService.showToast("Register Successful")
+      }, 
+
+      error => {
+          this.error = error._body
+      },
+
+      () => { this.isSubmit = false }
+    )
   }
 
   onValueChanged(data?: any) {
