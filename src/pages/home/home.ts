@@ -3,6 +3,7 @@ import { VocabService } from '../../app/services/vocab.service';
 import { NavController, ActionSheetController, AlertController } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
 import { AddVocabPage } from '../vocab/addvocab/addvocab';
+import { UpdateVocabPage } from '../vocab/updatevocab/updatevocab';
 
 @Component({
   selector: 'page-home',
@@ -55,6 +56,9 @@ export class HomePage {
           text: 'Edit',
           handler: () => {
             console.log('Go to edit page');
+            this.navCtrl.push(UpdateVocabPage, {
+              vocab: vocab
+            })
           }
         },{
           text: 'Delete',
@@ -69,7 +73,7 @@ export class HomePage {
         }
       ]
     });
-    
+
     actionSheet.present();
   }
 
