@@ -3,6 +3,7 @@ import { AuthenService } from '../../app/services/authen.service';
 import { NavController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { HomePage } from '../home/home';
+import { ToastService } from '../../app/services/toast.service';
 
 @Component({
   selector: 'page-signin',
@@ -15,7 +16,8 @@ export class SigninPage {
 
   constructor(
     public navCtrl: NavController, 
-    private authenService: AuthenService
+    private authenService: AuthenService,
+    private toastService: ToastService
   ) {
     this.email = ''
     this.password = ''
@@ -29,6 +31,11 @@ export class SigninPage {
       }, 
 
       error => {  
+          if(error.status == 0){
+            this.toastService.showToast("No Internet Connection.")
+            return;
+          }
+
           this.error = "Invalid email or password"
       }
     )
