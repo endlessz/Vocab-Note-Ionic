@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthenService } from '../../app/services/authen.service';
-import { ToastService } from '../../app/services/toast.service';
+import { AuthenService } from '../../providers/authen.service';
+import { ToastService } from '../../providers/toast.service';
 import { NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserValidator } from '../../app/validators/user.validator';

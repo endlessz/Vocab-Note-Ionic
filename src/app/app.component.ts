@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-import { AuthenService } from './services/authen.service';
-import { ToastService } from './services/toast.service';
-import { VocabService } from './services/vocab.service';
+import { AuthenService } from '../providers/authen.service';
+import { ToastService } from '../providers/toast.service';
+import { VocabService } from '../providers/vocab.service';
 import { HomePage } from '../pages/home/home';
 import { SigninPage } from '../pages/signin/signin';
 

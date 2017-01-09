@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { VocabService } from '../../../app/services/vocab.service';
+import { VocabService } from '../../../providers/vocab.service';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomePage } from '../../home/home';
-import { ToastService } from '../../../app/services/toast.service';
+import { ToastService } from '../../../providers/toast.service';
 
 @Component({
   selector: 'page-updatevocab',

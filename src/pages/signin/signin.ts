@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AuthenService } from '../../app/services/authen.service';
+import { AuthenService } from '../../providers/authen.service';
 import { NavController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { HomePage } from '../home/home';
-import { ToastService } from '../../app/services/toast.service';
+import { ToastService } from '../../providers/toast.service';
 
 @Component({
   selector: 'page-signin',

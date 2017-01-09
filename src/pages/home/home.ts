@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { VocabService } from '../../app/services/vocab.service';
+import { VocabService } from '../../providers/vocab.service';
 import { NavController, ActionSheetController, AlertController } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
 import { AddVocabPage } from '../vocab/addvocab/addvocab';
