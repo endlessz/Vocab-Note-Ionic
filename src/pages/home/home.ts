@@ -4,6 +4,7 @@ import { NavController, ActionSheetController, AlertController } from 'ionic-ang
 import { SigninPage } from '../signin/signin';
 import { AddVocabPage } from '../vocab/addvocab/addvocab';
 import { UpdateVocabPage } from '../vocab/updatevocab/updatevocab';
+import { NoConnectionPage } from '../error/no-connection';
 
 @Component({
   selector: 'page-home',
@@ -34,6 +35,10 @@ export class HomePage {
   	  }, 
 
       error => {
+        if(error.status == 0){
+          this.navCtrl.setRoot(NoConnectionPage)
+        }
+
     		if(error.status == 401){
     			console.log("Unauthentication")
     			this.navCtrl.setRoot(SigninPage)
