@@ -6,12 +6,16 @@
       <button ion-button icon-only color="royal" (click)="goToEditPage()">
         <ion-icon name="create"></ion-icon>
       </button>
+       <button ion-button icon-only color="royal" (click)="showDeleteConfirm()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
     </ion-buttons>
 
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-spinner [ngClass]="{'active': isLoading }" class="myspinner" color="primary"></ion-spinner>
   <ion-list>
     <ion-item>
       <ion-label stacked>Word</ion-label>
