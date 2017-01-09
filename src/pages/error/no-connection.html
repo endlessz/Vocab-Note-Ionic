@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Vocab Note</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="center-block">
+  	<h3 class="text-center text-lightblack">Check your connection and try again.</h3>
+    <ion-row>
+      <button ion-button class="center" color="stable" (click)="goToHome()">Retry</button>
+    </ion-row>
+  </div>
+</ion-content>
