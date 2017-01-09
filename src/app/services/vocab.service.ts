@@ -9,7 +9,7 @@ export class VocabService {
 
 	constructor(http: Http){
 		this.http = http
-		this.baseUrl = "http://vocabnote.herokuapp.com/api/v1/vocabs"
+		this.baseUrl = "https://vocabnote.herokuapp.com/api/v1/vocabs"
 	}
 
 	getVocabs(){

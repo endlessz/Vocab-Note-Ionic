@@ -11,7 +11,7 @@ export class AuthenService {
 
 	constructor(http: Http){
 		this.http = http
-		this.baseUrl = "http://vocabnote.herokuapp.com/api/v1/"
+		this.baseUrl = "https://vocabnote.herokuapp.com/api/v1/"
 		this.headers = new Headers({ 'Content-Type': 'application/json' });
 		this.options = new RequestOptions({ headers: this.headers });
 	}
