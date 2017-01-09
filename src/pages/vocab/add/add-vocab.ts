@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { VocabService } from '../../../providers/vocab.service';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomePage } from '../../home/home';
 import { ToastService } from '../../../providers/toast.service';
 
 @Component({
-  selector: 'page-updatevocab',
-  templateUrl: 'updatevocab.html'
+  selector: 'page-add-vocab',
+  templateUrl: 'add-vocab.html'
 })
 
-export class UpdateVocabPage {
-  updateVocabForm: FormGroup
+export class AddVocabPage {
+  addVocabForm: FormGroup
   error: any
   isSubmit: boolean
 
@@ -19,49 +19,43 @@ export class UpdateVocabPage {
     public navCtrl: NavController, 
     private vocabService: VocabService, 
     private builder: FormBuilder,
-    private navParams: NavParams,
     private toastService: ToastService
   ) {
-    this.isSubmit = false
+  	this.isSubmit = false
   }
 
   ngOnInit(){
-    this.updateVocabForm = this.builder.group({
-        id: ['', Validators.required],
+  	this.addVocabForm = this.builder.group({
         word: ['', Validators.compose([
             Validators.maxLength(200),
             Validators.required
-         ])],
+        ])],
+
         meaning: ['', Validators.compose([
             Validators.maxLength(200),
             Validators.required
         ])],
+        
         example: ['', Validators.compose([
             Validators.maxLength(1000)
         ])]
     });
 
-    let vocab = this.navParams.get('vocab')
-    this.updateVocabForm.patchValue({id: vocab.id})
-    this.updateVocabForm.patchValue({word: vocab.word})
-    this.updateVocabForm.patchValue({meaning: vocab.meaning})
-    this.updateVocabForm.patchValue({example: vocab.example})
-
-    this.updateVocabForm.valueChanges.subscribe(data => this.onValueChanged(data));
+    this.addVocabForm.valueChanges.subscribe(data => this.onValueChanged(data));
   }
 
-  updateVocab(){
-    if(!this.updateVocabForm.valid){
+  addVocab(){
+    if(!this.addVocabForm.valid){
       this.error = "Word and Meaning is required"
       return
     }
 
     this.isSubmit = true
 
-    this.vocabService.putVocab(this.updateVocabForm.value).subscribe(
+    this.vocabService.postVocab(this.addVocabForm.value).subscribe(
       response => {
         this.navCtrl.setRoot(HomePage)
-      }, 
+      },
 
       error => {
         if(error.status == 0){
@@ -70,31 +64,30 @@ export class UpdateVocabPage {
         }
 
         this.error = error._body
-      },
-      
+      }),
+
       () => { this.isSubmit = false }
-    )
   }
 
   onValueChanged(data?: any) {
-    this.error = ''
+  	  this.error = ''
 
-    const form = this.updateVocabForm;
+      const form = this.addVocabForm;
 
-    for (const field in this.formErrors) {
-      this.formErrors[field] = [];
-      this.updateVocabForm[field] = '';
+      for (const field in this.formErrors) {
+        this.formErrors[field] = [];
+        this.addVocabForm[field] = '';
 
-      const control = form.get(field);
+        const control = form.get(field);
 
-      if (control && control.dirty && !control.valid) {
-        const messages = this.validationMessages[field];
+        if (control && control.dirty && !control.valid) {
+          const messages = this.validationMessages[field];
 
-        for (const key in control.errors) {
-          this.formErrors[field].push(messages[key]);
+          for (const key in control.errors) {
+            this.formErrors[field].push(messages[key]);
+          }
         }
       }
-    }
   }
 
   formErrors = {
@@ -104,9 +97,6 @@ export class UpdateVocabPage {
   }
 
   validationMessages = {
-    'id': {
-      'required':       'id is required'
-    },
     'word': {
       'required':       'Word is required',
       'maxlength':      'Word cannot contain up to 200 characters.',

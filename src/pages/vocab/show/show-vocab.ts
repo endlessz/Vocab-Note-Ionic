@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { UpdateVocabPage } from '../updatevocab/updatevocab';
+import { UpdateVocabPage } from '../update/update-vocab';
 
 @Component({
   selector: 'page-show-vocab',

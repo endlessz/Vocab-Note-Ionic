@@ -4,8 +4,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
-import { AddVocabPage } from '../pages/vocab/addvocab/addvocab';
-import { UpdateVocabPage } from '../pages/vocab/updatevocab/updatevocab';
+import { AddVocabPage } from '../pages/vocab/add/add-vocab';
+import { UpdateVocabPage } from '../pages/vocab/update/update-vocab';
 import { ShowVocabPage } from '../pages/vocab/show/show-vocab';
 import { NoConnectionPage } from '../pages/error/no-connection';
 

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { VocabService } from '../../providers/vocab.service';
 import { NavController, ActionSheetController, AlertController } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
-import { AddVocabPage } from '../vocab/addvocab/addvocab';
-import { UpdateVocabPage } from '../vocab/updatevocab/updatevocab';
+import { AddVocabPage } from '../vocab/add/add-vocab';
+import { UpdateVocabPage } from '../vocab/update/update-vocab';
 import { ShowVocabPage } from '../vocab/show/show-vocab';
 import { NoConnectionPage } from '../error/no-connection';
 
