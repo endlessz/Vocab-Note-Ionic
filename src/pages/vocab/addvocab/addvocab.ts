@@ -26,15 +26,16 @@ export class AddVocabPage {
 
   ngOnInit(){
   	this.addVocabForm = this.builder.group({
-        id: ['', Validators.required],
         word: ['', Validators.compose([
             Validators.maxLength(200),
             Validators.required
-         ])],
+        ])],
+
         meaning: ['', Validators.compose([
             Validators.maxLength(200),
             Validators.required
         ])],
+        
         example: ['', Validators.compose([
             Validators.maxLength(1000)
         ])]
@@ -45,8 +46,8 @@ export class AddVocabPage {
 
   addVocab(){
     if(!this.addVocabForm.valid){
-    	this.error = "Word and Meaning is required"
-    	return
+      this.error = "Word and Meaning is required"
+      return
     }
 
     this.isSubmit = true
@@ -96,9 +97,6 @@ export class AddVocabPage {
   }
 
   validationMessages = {
-    'id': {
-      'required':       'id is required'
-    },
     'word': {
       'required':       'Word is required',
       'maxlength':      'Word cannot contain up to 200 characters.',
