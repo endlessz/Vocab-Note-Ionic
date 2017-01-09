@@ -1,6 +1,10 @@
 # Vocab-Note-Ionic
 Practice vocab note application built with Ionic 2
 
+# Features
+- Calling an API
+- Authentication
+
 # Backend- API
 
 Create using Lumen 5.3.2
