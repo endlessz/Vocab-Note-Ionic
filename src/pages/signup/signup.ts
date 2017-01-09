@@ -56,6 +56,11 @@ export class SignupPage {
       }, 
 
       error => {
+          if(error.status == 0){
+            this.toastService.showToast("No Internet Connection.")
+            return;
+          }
+
           this.error = error._body
       },
 
