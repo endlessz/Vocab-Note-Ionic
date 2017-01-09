@@ -15,7 +15,7 @@
 <ion-content>
   <ion-spinner [ngClass]="{'active': isLoading }" class="myspinner" color="primary"></ion-spinner>
   <ion-list>
-	  <button ion-item *ngFor="let vocab of vocabs" (press)="presentWordAction(vocab)">
+	  <button ion-item *ngFor="let vocab of vocabs" (press)="presentWordAction(vocab)" (click)="goToShowVocab(vocab)">
 	    <h2>{{ vocab.word }}</h2>
 	    <h3>{{ vocab.meaning }}</h3>
 	  </button>
