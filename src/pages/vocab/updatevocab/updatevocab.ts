@@ -3,6 +3,7 @@ import { VocabService } from '../../../app/services/vocab.service';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomePage } from '../../home/home';
+import { ToastService } from '../../../app/services/toast.service';
 
 @Component({
   selector: 'page-updatevocab',
@@ -18,7 +19,8 @@ export class UpdateVocabPage {
     public navCtrl: NavController, 
     private vocabService: VocabService, 
     private builder: FormBuilder,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private toastService: ToastService
   ) {
     this.isSubmit = false
   }
@@ -62,6 +64,11 @@ export class UpdateVocabPage {
       }, 
 
       error => {
+        if(error.status == 0){
+          this.toastService.showToast("No Internet Connection.")
+          return;
+        }
+
         this.error = error._body
       },
       

@@ -3,6 +3,7 @@ import { VocabService } from '../../../app/services/vocab.service';
 import { NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomePage } from '../../home/home';
+import { ToastService } from '../../../app/services/toast.service';
 
 @Component({
   selector: 'page-addvocab',
@@ -17,7 +18,8 @@ export class AddVocabPage {
   constructor(
     public navCtrl: NavController, 
     private vocabService: VocabService, 
-    private builder: FormBuilder
+    private builder: FormBuilder,
+    private toastService: ToastService
   ) {
   	this.isSubmit = false
   }
@@ -49,12 +51,21 @@ export class AddVocabPage {
 
     this.isSubmit = true
 
-    this.vocabService.postVocab(this.addVocabForm.value).subscribe(response => {
-      this.navCtrl.setRoot(HomePage)
-    }, error => {
-    	this.isSubmit = false
+    this.vocabService.postVocab(this.addVocabForm.value).subscribe(
+      response => {
+        this.navCtrl.setRoot(HomePage)
+      },
+
+      error => {
+        if(error.status == 0){
+          this.toastService.showToast("No Internet Connection.")
+          return;
+        }
+
         this.error = error._body
-    })
+      }),
+
+      () => { this.isSubmit = false }
   }
 
   onValueChanged(data?: any) {
