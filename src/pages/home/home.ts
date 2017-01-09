@@ -4,6 +4,7 @@ import { NavController, ActionSheetController, AlertController } from 'ionic-ang
 import { SigninPage } from '../signin/signin';
 import { AddVocabPage } from '../vocab/addvocab/addvocab';
 import { UpdateVocabPage } from '../vocab/updatevocab/updatevocab';
+import { ShowVocabPage } from '../vocab/show/show-vocab';
 import { NoConnectionPage } from '../error/no-connection';
 
 @Component({
@@ -49,10 +50,6 @@ export class HomePage {
     )
   }
 
-  goToAddVocab(){
-    this.navCtrl.push(AddVocabPage)
-  }
-
   presentWordAction(vocab) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Vocab Action -> ' + vocab.word,
@@ -60,10 +57,7 @@ export class HomePage {
         {
           text: 'Edit',
           handler: () => {
-            console.log('Go to edit page');
-            this.navCtrl.push(UpdateVocabPage, {
-              vocab: vocab
-            })
+            this.goToEditVocab(vocab)
           }
         },{
           text: 'Delete',
@@ -80,6 +74,22 @@ export class HomePage {
     });
 
     actionSheet.present();
+  }
+
+  goToAddVocab(){
+    this.navCtrl.push(AddVocabPage)
+  }
+
+  goToShowVocab(vocab){
+    this.navCtrl.push(ShowVocabPage, {
+        vocab: vocab
+    })
+  }
+
+  goToEditVocab(vocab){
+    this.navCtrl.push(UpdateVocabPage, {
+        vocab: vocab
+    })
   }
 
   showDeleteConfirm(vocab) {
