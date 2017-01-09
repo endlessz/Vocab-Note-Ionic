@@ -6,6 +6,7 @@ import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { AddVocabPage } from '../pages/vocab/addvocab/addvocab';
 import { UpdateVocabPage } from '../pages/vocab/updatevocab/updatevocab';
+import { ShowVocabPage } from '../pages/vocab/show/show-vocab';
 import { NoConnectionPage } from '../pages/error/no-connection';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { NoConnectionPage } from '../pages/error/no-connection';
     SignupPage,
     AddVocabPage,
     UpdateVocabPage,
-    NoConnectionPage
+    NoConnectionPage,
+    ShowVocabPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -29,7 +31,8 @@ import { NoConnectionPage } from '../pages/error/no-connection';
     SignupPage,
     AddVocabPage,
     UpdateVocabPage,
-    NoConnectionPage
+    NoConnectionPage,
+    ShowVocabPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
